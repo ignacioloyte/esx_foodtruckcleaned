@@ -11,7 +11,7 @@ if Config.MaxInService ~= -1 then
 end
 
 AddEventHandler('onMySQLReady', function ()
-	MySQL.Async.fetchAll("SELECT * FROM `shopsMarket` WHERE `name` = 'Market'",
+	MySQL.Async.fetchAll("SELECT * FROM `shops` WHERE `store` = 'Market'",
 		{},
 		function(result)
 			MySQL.Async.fetchAll("SELECT * FROM `items`",
@@ -95,29 +95,4 @@ AddEventHandler('esx_foodtruck:addItem', function(item, count)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	xPlayer.addInventoryItem(item, count)
-end)
-
----------------------------- register usable item --------------------------------------------------
-ESX.RegisterUsableItem('rivella', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	xPlayer.removeInventoryItem('rivella', 1)
-	TriggerClientEvent('esx_status:add', source, 'thirst', 300000)
-	TriggerClientEvent('esx_basicneeds:onDrink', source, 'prop_ecola_can')
-    TriggerClientEvent('esx:showNotification', source, _U('drank_rivella'))
-end)
-
-ESX.RegisterUsableItem('burger', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	xPlayer.removeInventoryItem('burger', 1)
-	TriggerClientEvent('esx_status:add', source, 'hunger', 300000)
-	TriggerClientEvent('esx_basicneeds:onEat', source, 'prop_cs_burger_01')
-    TriggerClientEvent('esx:showNotification', source, _U('eat_burger'))
-end)
-
-ESX.RegisterUsableItem('tacos', function(source)
-	local xPlayer = ESX.GetPlayerFromId(source)
-	xPlayer.removeInventoryItem('tacos', 1)
-	TriggerClientEvent('esx_status:add', source, 'hunger', 300000)
-	TriggerClientEvent('esx_basicneeds:onEat', source, 'prop_taco_01')
-    TriggerClientEvent('esx:showNotification', source, _U('eat_taco'))
 end)
