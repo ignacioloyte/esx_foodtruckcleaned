@@ -24,7 +24,7 @@ AddEventHandler('esx_foodtruck:refreshMarket', function()
 end)
 
 function OpenFoodTruckMarketMenu()
-	if PlayerData.job ~= nil and PlayerData.job.grade_name == 'boss' then
+	if PlayerData.job ~= nil and PlayerData.job.grade_name == 'logistica' then
 		ESX.TriggerServerCallback('esx_foodtruck:getStock', function(fridge, MarketPrices)
 
 			local elements = {
